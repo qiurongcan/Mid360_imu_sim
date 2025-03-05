@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(livox_laser_simulation)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-add_compile_options(-std=c++11)
+add_compile_options(-std=c++17)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -13,7 +13,7 @@ find_package(gazebo REQUIRED)
 include_directories(${GAZEBO_INCLUDE_DIRS})
 
 #To solve the error which gazebo does not handle the include file well, we must add this line.
-include_directories(/usr/include/gazebo-7/gazebo)
+include_directories(/usr/include/gazebo-11/gazebo)
 
 link_directories(${GAZEBO_LIBRARY_DIRS})
 

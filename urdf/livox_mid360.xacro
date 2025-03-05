@@ -24,32 +24,32 @@
         <update_rate>${update_rate}</update_rate>
         <!-- This ray plgin is only for visualization. -->
         <plugin name="gazebo_ros_laser_controller" filename="liblivox_laser_simulation.so">
-			<ray>
+			 <ray>
 			  <scan>
-				<horizontal>
-				<samples>100</samples>
-				<resolution>1</resolution>
-				<min_angle>${0}</min_angle>
-				<max_angle>${2*M_PI}</max_angle>
-				</horizontal>
-				<vertical>
-				<samples>360</samples>
-				<resolution>1</resolution>
-				<min_angle>${-7.22/180*M_PI}</min_angle>
-				<max_angle>${55.22/180*M_PI}</max_angle>
-				</vertical>
+				  <horizontal>
+				    <samples>100</samples>
+				    <resolution>1</resolution>
+				    <min_angle>0</min_angle>
+            			    <max_angle>${2*M_PI}</max_angle>
+				  </horizontal>
+				  <vertical>
+				    <samples>360</samples>
+				    <resolution>1</resolution>
+				    <min_angle>${-3.22/180*M_PI}</min_angle>
+           			    <max_angle>${56.22/180*M_PI}</max_angle>
+				  </vertical>
 			  </scan>
 			  <range>
-				<min>${laser_min_range}</min>
-				<max>${laser_max_range}</max>
-				<resolution>${resolution}</resolution>
+				  <min>0.1</min>
+				  <max>30</max>
+				  <resolution>0.02</resolution>
 			  </range>
 			  <noise>
-				<type>gaussian</type>
-				<mean>${noise_mean}</mean>
-				<stddev>${noise_stddev}</stddev>
+				  <type>gaussian</type>
+				  <mean>0.0</mean>
+				  <stddev>0.0</stddev>
 			  </noise>
-			</ray>
+			  </ray>
           <visualize>${visualize}</visualize>
 		  <samples>${samples}</samples>
 		  <downsample>${downsample}</downsample>
@@ -67,14 +67,14 @@
       <visual> 
         <origin xyz="0.00 0 0.0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://livox_laser_simulation/meshes/livox_mid40.dae">
+          <mesh filename="package://livox_laser_simulation/meshes/mid360.dae">
           </mesh>
         </geometry>
       </visual>
 
       <collision>
 		  <origin xyz="0 0 0" rpy="0 0 0" /> <geometry> <mesh 
-		  filename="package://livox_laser_simulation/meshes/livox_mid40.dae"> 
+		  filename="package://livox_laser_simulation/meshes/mid360_rules.dae"> 
 		  </mesh> </geometry>
       </collision>
     </link>
@@ -85,11 +85,11 @@
     <joint name="${name}_to_${name}_base_joint" type="fixed">
       <parent link="${name}_base"/>
       <child link="${name}"/>
-      <origin rpy="0 0 0" xyz="0.0 1.0 0.2"/>
+      <origin rpy="0 0 0" xyz="-0.012 0.0 0.047"/>
     </joint>
     <xacro:Livox_Mid_gazebo_sensor name="${name}" visualize="${visualize}"/>
   </xacro:macro>
-    <xacro:Livox_Mid40 name="livox"/>
-  <xacro:include filename="$(find livox_laser_simulation)/urdf/standardrobots_oasis300.xacro"/>
-  <xacro:link_oasis name="oasis"/>
+    <!--xacro:Livox_Mid40 name="livox"/-->
+  <!--xacro:include filename="$(find livox_laser_simulation)/urdf/standardrobots_oasis300.xacro"/>
+  <xacro:link_oasis name="oasis"/-->
 </robot>
