@@ -59,6 +59,8 @@ void LivoxPointsPlugin::Load(gazebo::sensors::SensorPtr _parent, sdf::ElementPtr
     }   
     if (!CsvReader::ReadCsvFile(resolved_csv_file_name, datas)) {
         ROS_INFO_STREAM("cannot get csv file!" << resolved_csv_file_name << "will return !");
+        return;
+    }
 
 
     
