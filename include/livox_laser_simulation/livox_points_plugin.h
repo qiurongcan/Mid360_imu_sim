@@ -78,6 +78,9 @@ class LivoxPointsPlugin : public RayPlugin {
 
     void InitializeScan(msgs::LaserScan*& scan);
 
+    void PublishPointCloud2XYZRTL(std::vector<std::pair<int, AviaRotateInfo>> &points_pair);
+    void LivoxPointsPlugin::PublishPointCloud(std::vector<std::pair<int, AviaRotateInfo>> &points_pair);
+
     void SendRosTf(const ignition::math::Pose3d& pose, const std::string& father_frame, const std::string& child_frame);
 
     boost::shared_ptr<physics::LivoxOdeMultiRayShape> rayShape;
@@ -98,6 +101,10 @@ class LivoxPointsPlugin : public RayPlugin {
     int64_t currStartIndex = 0;
     int64_t maxPointSize = 1000;
     int64_t downSample = 1;
+
+   // 修改发布话题的点云消息类型
+   // 1 sensor_msgs/PointCloud; 2 sensor_msgs/PointCloud2
+    int PointCloudType = 1;
 
     double maxDist = 400.0;
     double minDist = 0.1;
