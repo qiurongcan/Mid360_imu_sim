@@ -51,6 +51,7 @@ void convertDataToRotateInfo(const std::vector<std::vector<double>> &datas, std:
 
 void LivoxPointsPlugin::Load(gazebo::sensors::SensorPtr _parent, sdf::ElementPtr sdf) {
     std::vector<std::vector<double>> datas;
+    // 修改为mid360.csv文件的路径
     std::string file_name = "/home/lcz/px_ws/src/livox_laser_simulation/scan_mode/avia.csv";
     ROS_INFO_STREAM("load csv file name:" << file_name);
     if (!CsvReader::ReadCsvFile(file_name, datas)) {
@@ -98,6 +99,7 @@ void LivoxPointsPlugin::Load(gazebo::sensors::SensorPtr _parent, sdf::ElementPtr
     ROS_INFO_STREAM("downsample:" << downSample);
 
     //publishPointCloudType = sdfPtr->Get<uint16_t>("publish_pointcloud_type");
+    // 此处修改0：PointCloud ; 2: PointCloud2 ; 3: CustomMsg
     publishPointCloudType = 3;
     ros::init(argc, argv, curr_scan_topic);
     rosNode.reset(new ros::NodeHandle);
