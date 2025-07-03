@@ -3,6 +3,9 @@
 //
 
 #include "livox_laser_simulation/livox_points_plugin.h"
+#include <pcl/point_cloud.h>
+#include <pcl/point_types.h>
+#include <pcl_conversions/pcl_conversions.h>
 #include <ros/ros.h>
 #include <sensor_msgs/PointCloud.h>
 #include <sensor_msgs/PointCloud2.h>
@@ -386,7 +389,6 @@ void LivoxPointsPlugin::SendRosTf(const ignition::math::Pose3d &pose, const std:
     //     tf::StampedTransform(tf, ros::Time::now(), raySensor->ParentName(), raySensor->Name()));
 }
 
-}
 
 void LivoxPointsPlugin::PublishPointCloud2XYZRTL(std::vector<std::pair<int, AviaRotateInfo>> &points_pair) {
     auto rayCount = RayCount();
@@ -445,7 +447,7 @@ void LivoxPointsPlugin::PublishPointCloud2XYZRTL(std::vector<std::pair<int, Avia
     scan_point.header.frame_id = raySensor->Name();
     rosPointPub.publish(scan_point);
     ros::spinOnce();
-    if (scanPub && scanPub->HasConnections() && visualize) {
+    if (scanPub && scanPub->HasConnections()) {
         scanPub->Publish(laserMsg);
     }
 }
@@ -511,6 +513,11 @@ void LivoxPointsPlugin::PublishPointCloud(std::vector<std::pair<int, AviaRotateI
     rosPointPub.publish(scan_point);
     ros::spinOnce();
 }
+
+
+
+}
+
 
 //
 // Created by lfc on 2021/2/28.

@@ -79,7 +79,7 @@ class LivoxPointsPlugin : public RayPlugin {
     void InitializeScan(msgs::LaserScan*& scan);
 
     void PublishPointCloud2XYZRTL(std::vector<std::pair<int, AviaRotateInfo>> &points_pair);
-    void LivoxPointsPlugin::PublishPointCloud(std::vector<std::pair<int, AviaRotateInfo>> &points_pair);
+    void PublishPointCloud(std::vector<std::pair<int, AviaRotateInfo>> &points_pair);
 
     void SendRosTf(const ignition::math::Pose3d& pose, const std::string& father_frame, const std::string& child_frame);
 

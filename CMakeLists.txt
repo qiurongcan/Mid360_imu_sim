@@ -7,6 +7,8 @@ add_compile_options(-std=c++17)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   tf
+  pcl_ros
+  pcl_conversions
 )
 
 find_package(gazebo REQUIRED)
